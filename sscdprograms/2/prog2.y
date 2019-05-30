@@ -1,0 +1,35 @@
+%{
+#include<stdio.h>
+#include<stdlib.h>
+int count=0;
+%}
+%token A B 
+%%
+S : X B 
+X: X A {count++;}
+| ;
+
+%%
+
+int main(){
+	int n;
+	printf("enter the value of n\n");
+	scanf("%d",&n);
+        printf("Enter the Expression\n");
+	yyparse();
+	if(n==count)
+	{
+		printf("A:%d\tn:%d\n",count,n);
+		printf("valid\n");
+	}
+       else{
+          printf("Invalid ");
+       }
+}
+
+
+int yyerror(){
+	printf("Invalid\n");
+	exit(0);
+}
+
